@@ -1,0 +1,12 @@
+GET https://zeus.sii.cl/cvc_cgi/stc/CViewCaptcha.cgi?oper=0
+
+###
+POST https://zeus.sii.cl/cvc_cgi/stc/getstc
+Content-Type: application/x-www-form-urlencoded
+
+RUT=16480627
+&DV=8
+&PRG=STC
+&OPC=NOR
+&txt_captcha=Z1c1TFhVMzFhNlUyMDIyMTEyOTE2MDkzNmsxNkdqWHJjbXJ3MzIyMjRML3Nici5Sb3BnMDB1UUE3bEU2dzlZTVFVSnpZaTlSTm5OMVZWRTBMZz09TWpUMDhPbnQ5Vi4=
+&txt_code=3222

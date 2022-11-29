@@ -1,14 +1,26 @@
 import { CaptchaData, getCaptcha, sendFormSII } from './sii.repository';
 import { FormSII } from './sii.interfaces';
-import { extractData, RutInfo } from './helpers';
+import { destructureRUT, extractData, Rut, RutInfo, validateDocument } from './helpers';
 // import { html } from '../mock';
 
-const main = async () => {
+const main = async (rut: string) => {
+  const rutClean: Rut = destructureRUT(rut);
+
+  const isValid: boolean = validateDocument(rutClean);
+
+  if (!isValid) {
+    return {
+      status: 'error',
+      message: `Rut inválido: ${rut}`,
+      data: null,
+    };
+  }
+
   const captcha: CaptchaData = await getCaptcha();
 
   const data: FormSII = {
-    RUT: 16480627,
-    DV: 8,
+    RUT: rutClean.documentNumber,
+    DV: rutClean.verifier,
     CAPTCHA: captcha.captcha,
     CODE: captcha.code,
     OPC: 'NOR',
@@ -34,4 +46,6 @@ const main = async () => {
   };
 };
 
-main();
+main('16480627-8').then((response) => {
+  console.log(response);
+});

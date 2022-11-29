@@ -36,7 +36,5 @@ export const sendFormSII = async (form: FormSII): Promise<AxiosResponse> => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
-  }).then((response) => {
-    return response.data;
   });
 };
